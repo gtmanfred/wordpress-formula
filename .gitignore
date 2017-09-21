@@ -1,0 +1,41 @@
+# Because this is a gem, ignore Gemfile.lock:
+
+Gemfile.lock
+
+# And because this is Ruby, ignore the following
+#  (source: https://github.com/github/gitignore/blob/master/Ruby.gitignore):
+
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+test/tmp
+test/version_tmp
+tmp
+
+.cache
+__pycache__
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+
+# Other
+*.DS_Store
+.kitchen/
+
+### IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+/out/
+.idea_modules/
+atlassian-ide-plugin.xml
+.vscode

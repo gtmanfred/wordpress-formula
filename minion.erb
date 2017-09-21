@@ -1,0 +1,20 @@
+
+local: true
+state_top: top.sls
+root_dir: <%= config[:root_path] %>
+
+file_roots:
+ <%= config[:salt_env] %>:
+   - <%= File.join(config[:root_path], (windows_os? ? config[:salt_file_root].gsub('/', '\\') : config[:salt_file_root])) %>
+   - <%= File.join(config[:root_path], (windows_os? ? config[:salt_spm_root].gsub('/', '\\') : config[:salt_spm_root])) %>/salt
+
+pillar_roots:
+ <%= config[:salt_env] %>:
+   - <%= File.join(config[:root_path], (windows_os? ? config[:salt_pillar_root].gsub('/', '\\') : config[:salt_pillar_root])) %>
+   - <%= File.join(config[:root_path], (windows_os? ? config[:salt_spm_root].gsub('/', '\\') : config[:salt_spm_root])) %>/pillar
+
+sqlite:
+  driver: sqlite3
+  database: <%= File.join(config[:root_path], 'sdb.sqlite') %>
+  table: sdb
+  create_table: True

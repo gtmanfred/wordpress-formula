@@ -1,0 +1,61 @@
+driver:
+  name: vagrant
+  box: centos/7
+  use_sudo: false
+
+provisioner:
+  name: salt_solo
+  salt_install: bootstrap
+  salt_version: latest
+  salt_bootstrap_url: https://bootstrap.saltstack.com
+  salt_bootstrap_options: -X -p git -p curl -p sudo
+  is_file_root: true
+  require_chef: false
+  salt_minion_config_template: 'minion.erb'
+  dependencies:
+    - name: apache
+      repo: git
+      source: https://github.com/saltstack-formulas/apache-formula.git
+    - name: mysql
+      repo: git
+      source: https://github.com/gtmanfred/mysql-formula.git
+    - name: php
+      repo: git
+      source: https://github.com/saltstack-formulas/php-formula.git
+  state_top:
+    base:
+      "*":
+        - wordpress
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - wordpress
+    wordpress.sls:
+      mysql:
+        database:
+          - wordpress
+        user:
+          wordpress:
+            password: quair9aiqueeShae4toh
+            host: localhost
+            databases:
+              - database: wordpress
+                grants:
+                  - all privileges
+  grains:
+    noservices: True
+
+platforms:
+  - name: centos-7
+    driver_config:
+      network:
+        - ["forwarded_port", {guest: 80, host: 80}]
+
+suites:
+  - name: default
+
+verifier:
+  name: shell
+  remote_exec: false
+  command: pytest -v tests/integration/
