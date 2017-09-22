@@ -5,3 +5,9 @@ download wordpress archive:
     - source: https://wordpress.org/wordpress-4.8.2.tar.gz
     - options: --strip-components=1
     - enforce_toplevel: false
+  file.directory:
+    - name: /var/www/html/
+    - file_mode: 664 
+    - dir_mode: 2775
+    - user: apache
+    - group: apache

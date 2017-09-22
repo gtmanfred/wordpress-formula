@@ -1,7 +1,12 @@
 driver:
-  name: vagrant
-  box: centos/7
+  name: docker
   use_sudo: false
+  privileged: true
+  forward:
+    - 80
+
+driver_config:
+  run_command: /usr/lib/systemd/systemd
 
 provisioner:
   name: salt_solo
@@ -11,7 +16,6 @@ provisioner:
   salt_bootstrap_options: -X -p git -p curl -p sudo
   is_file_root: true
   require_chef: false
-  salt_minion_config_template: 'minion.erb'
   dependencies:
     - name: apache
       repo: git
@@ -43,14 +47,15 @@ provisioner:
               - database: wordpress
                 grants:
                   - all privileges
-  grains:
-    noservices: True
+      wordpress:
+        user: apache
+        admin_user: gtmanfred
+        admin_email: daniel@gtmanfred.com
+        title: "GtManfred's Blog"
+        url: http://blog.manfred.io
 
 platforms:
   - name: centos-7
-    driver_config:
-      network:
-        - ["forwarded_port", {guest: 80, host: 80}]
 
 suites:
   - name: default
