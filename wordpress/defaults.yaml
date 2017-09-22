@@ -1,0 +1,16 @@
+{%- load_yaml as rawmap %}
+Debian:
+  user: www-data
+  admin_user: wordpress
+  admin_password: "{{salt.grains.get_or_set_hash('generated:wordpress:password')}}"
+  admin_email: test@example.com
+  title: Wordpress
+  url: http://localhost/
+RedHat:
+  user: apache
+  admin_user: wordpress
+  admin_password: "{{salt.grains.get_or_set_hash('generated:wordpress:password')}}"
+  admin_email: test@example.com
+  title: Wordpress
+  url: http://localhost/
+{%- endload %}

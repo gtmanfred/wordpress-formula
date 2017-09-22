@@ -1,9 +1,12 @@
+{% from "wordpress/defaults.yaml" import rawmap with context %}
+{%- set config = salt['grains.filter_by'](rawmap, grain='os_family', merge=salt['config.get']('wordpress:lookup')) %}
+
 configure wordpress:
   file.managed:
     - name: /var/www/html/wp-config.php
     - source: salt://wordpress/wp-config.php.j2
-    - user: apache
-    - group: apache
+    - user: {{config.user}}
+    - group: {{config.user}}
     - template: jinja
 
 get wp manager script:
@@ -19,16 +22,17 @@ get wp manager script:
 do install:
   wordpress.installed:
     - path: /var/www/html/
-    - user: {{salt.config.get('wordpress:user', 'apache')}}
-    - admin_user: {{salt.config.get('wordpress:admin_user', 'wordpress')}}
-    - admin_password: "{{salt.grains.get_or_set_hash('wordpress_password')}}"
-    - admin_email: "{{salt.config.get('wordpress:admin_email', 'test@example.com')}}"
-    - title: "{{salt.config.get('wordpress:title', 'Wordpress')}}"
-    - url: "{{salt.config.get('wordpress:url', 'http://localhost.com')}}"
+    - user: {{config.user}}
+    - admin_user: {{config.admin_user}}
+    - admin_password: "{{config.admin_password}}"
+    - admin_email: "{{config.admin_email}}"
+    - title: "{{config.title}}"
+    - url: "{{config.url}}"
+
   file.directory:
     - name: /var/www/html
-    - user: apache
-    - group: apache
+    - user: {{config.user}}
+    - group: {{config.user}}
     - file_mode: 644
     - dir_mode: 2775
     - recurse:

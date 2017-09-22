@@ -1,5 +1,4 @@
 include:
-  - .test
   - php
   - php.curl
   - php.mysql
