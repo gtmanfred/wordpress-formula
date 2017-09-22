@@ -25,7 +25,7 @@ def list_plugins(path, user):
     Check if plugin is activated in path
     """
     ret = []
-    resp = __salt__['cmd.run']((
+    resp = __salt__['cmd.shell']((
         'wp --path={0} plugin list'
     ).format(path), runas=user)
     for line in resp.split('\n')[1:]:
@@ -35,7 +35,7 @@ def list_plugins(path, user):
 
 def show_plugin(name, path, user):
     ret = {'name': name}
-    resp = __salt__['cmd.run']((
+    resp = __salt__['cmd.shell']((
         'wp --path={0} plugin status {1}'
     ).format(path, name), runas=user).split('\n')
     for line in resp:
@@ -51,7 +51,7 @@ def activate(name, path, user):
     if check['status'] == 'active':
         # already active
         return None
-    resp = __salt__['cmd.run']((
+    resp = __salt__['cmd.shell']((
         'wp --path={0} plugin activate {1}'
     ).format(path, name), runas=user)
     if 'Success' in resp:
@@ -66,7 +66,7 @@ def deactivate(name, path, user):
     if check['status'] == 'inactive':
         # already inactive
         return None
-    resp = __salt__['cmd.run']((
+    resp = __salt__['cmd.shell']((
         'wp --path={0} plugin deactivate {1}'
     ).format(path, name), runas=user)
     if 'Success' in resp:

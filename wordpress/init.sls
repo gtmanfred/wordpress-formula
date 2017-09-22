@@ -1,13 +1,6 @@
 include:
-  - php
-  - php.curl
-  - php.mysql
-  - php.xml
-  - php.pear
-  - php.imap
-  - php.mcrypt
-  - php.gd
+  - php.ng
+  - php.ng.mysql
   - apache
   - mysql
-  - .download
-  - .config
+  - .setup

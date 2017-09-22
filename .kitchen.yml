@@ -4,6 +4,9 @@ driver:
   privileged: true
   forward:
     - 80
+driver_config:
+  provision_command:
+    - systemctl enable sshd.service
 
 provisioner:
   name: salt_solo
@@ -13,13 +16,22 @@ provisioner:
   salt_bootstrap_options: -X -p git -p curl -p sudo
   is_file_root: true
   require_chef: false
+  salt_copy_filter:
+    - .git
+    - .gitignore
+    - .kitchen
+    - .kitchen.yml
+    - Gemfile
+    - Gemfile.lock
+    - test-requirements.txt
+    - tests
   dependencies:
     - name: apache
       repo: git
       source: https://github.com/saltstack-formulas/apache-formula.git
     - name: mysql
       repo: git
-      source: https://github.com/gtmanfred/mysql-formula.git
+      source: https://github.com/saltstack-formulas/mysql-formula.git
     - name: php
       repo: git
       source: https://github.com/saltstack-formulas/php-formula.git
@@ -52,15 +64,21 @@ provisioner:
           url: http://blog.manfred.io
 
 platforms:
-  - name: centos-7
+  - name: centos
     driver_config:
       run_command: /usr/lib/systemd/systemd
-  - name: ubuntu-16.04
+  - name: rhel
+    driver_config:
+      run_command: /usr/lib/systemd/systemd
+  - name: opensuse
+    driver_config:
+      run_command: /usr/lib/systemd/systemd
+  - name: ubuntu
     driver_config:
       run_command: /lib/systemd/systemd
 
 suites:
-  - name: default
+  - name: wordpress
 
 verifier:
   name: shell
