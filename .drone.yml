@@ -2,7 +2,7 @@ pipeline:
   build_centos:
     image: gtmanfred/kitchen-salt:latest
     environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
+      - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install
       - bundle exec kitchen create centos -l warn -c 4
@@ -10,7 +10,7 @@ pipeline:
   verify:
     image: gtmanfred/kitchen-salt:latest
     environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
+      - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install --with=docker --without windows vagrant
       - python3 -m pip install --user -r test-requirements.txt
@@ -22,7 +22,7 @@ pipeline:
         - success
     image: gtmanfred/kitchen-salt:latest
     environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
+      - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install --with=docker --without windows vagrant
       - bundle exec kitchen list
