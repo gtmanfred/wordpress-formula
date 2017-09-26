@@ -1,4 +1,4 @@
-language: ruby
+language: python
 services:
   - docker
 addons:
@@ -6,13 +6,12 @@ addons:
     packages:
     - curl
     - git
-    - python3-pip
-rvm:
-  - ruby
+    - ruby-bundler
+python:
+  - 3.6
 dist: trusty
-before_install:
-  - add-apt-repository ppa:jonathonf/python-3.6
-  - apt-get update && apt-get install python
+install:
+  - bundle install
   - pip3 install --user -r test-requirements.txt
 script:
   # Setup for tests
