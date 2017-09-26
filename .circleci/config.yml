@@ -15,7 +15,9 @@ jobs:
           name: Install Test Kitchen
           command: |
             bundle install
-            pip3 install -r requirements.txt
+            pyenv install 3.6.2
+            pyenv global 3.6.2
+            pip install -r requirements.txt
       - run:
           name: Setup Containers
           command: |
