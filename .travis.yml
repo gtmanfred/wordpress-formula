@@ -6,7 +6,7 @@ python:
 dist: trusty
 install:
   - bundle install
-  - pip install -r test-requirements.txt
+  - pip install -r requirements.txt
 script:
   # Setup for tests
   - bundle exec kitchen create -l warn -c 3
