@@ -76,6 +76,9 @@ platforms:
   - name: ubuntu
     driver_config:
       run_command: /lib/systemd/systemd
+  - name: debian
+    driver_config:
+      run_command: /lib/systemd/systemd
 
 suites:
   - name: wordpress
