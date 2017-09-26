@@ -34,6 +34,10 @@ suse setup:
         LoadModule php5_module /usr/lib64/apache2/mod_php5.so
     - listen_in:
       - service: apache
+{%- elif grains.os_family in ('Debian',) %}
+remove default index.html:
+  file.absent:
+    - name: /var/www/html/index.html
 {%- endif %}
 
 get wp manager script:
@@ -56,8 +60,8 @@ do install:
     - admin_email: "{{config.admin_email}}"
     - title: "{{config.title}}"
     - url: "{{config.url}}"
-    - check_cmd:
-      - wp --path={{config.dir}} core is-installed
+    - retry:
+        attempts: 5
 
   file.directory:
     - name: {{config.dir}}

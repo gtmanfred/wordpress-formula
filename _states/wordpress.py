@@ -18,7 +18,7 @@ def installed(name, path, user, admin_user, admin_password, admin_email, title, 
 
     if check:
         ret['result'] = True
-        ret['comment'] = 'Plugin already activated: {0}'.format(name)
+        ret['comment'] = 'Wordpress is already installed: {0}'.format(name)
         return ret
     elif __opts__['test']:
         ret['result'] = None
