@@ -27,3 +27,7 @@ pipeline:
       - bundle install
       - bundle exec kitchen list
       - bundle exec kitchen destroy all
+when:
+  branch:
+    include:
+      - master
