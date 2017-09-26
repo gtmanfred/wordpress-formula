@@ -1,5 +1,5 @@
 pipeline:
-  build_centos:
+  build:
     image: gtmanfred/kitchen-salt:latest
     environment:
       - DOCKER_HOST=tcp://172.18.0.1:2375
