@@ -1,0 +1,31 @@
+version: 2.0
+jobs:
+  test:
+    machine:
+      image: circleci/classic:latest
+      enabled: true
+    steps:
+      - checkout
+      - run:
+          name: Install Test Kitchen
+          command: |
+            bundle install
+      - run:
+          name: Setup Containers
+          command: |
+            bundle exec kitchen create all -l warn -c 4
+            bundle exec kitchen converge all
+      - run:
+          name: Verify Environments
+          command: |
+            bundle exec kitchen verify all
+      - run:
+          name: Cleanup Containers
+          command: |
+            bundle exec kitchen list all
+            bundle exec kitchen destroy all
+workflows:
+  version: 2
+  Test:
+    jobs:
+      - test
