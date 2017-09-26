@@ -1,0 +1,36 @@
+version: 2.0
+jobs:
+  test:
+    docker:
+      - image: circleci/python:3.6.2
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Test Kitchen
+          command: |
+            sudo apt update
+            sudo apt install -y bundler
+            bundle install
+      - run:
+          name: Setup Containers
+          command: |
+            bundle exec kitchen create all -l warn -c 3
+            bundle exec kitchen converge all
+      - run:
+          name: Verify Environments
+          command: |
+            bundle exec kitchen verify all
+      - run:
+          name: Cleanup Containers
+          command: |
+            bundle exec kitchen list all
+            bundle exec kitchen destroy all
+workflows:
+  version: 2
+  Test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: master

@@ -23,7 +23,7 @@ provisioner:
     - .kitchen.yml
     - Gemfile
     - Gemfile.lock
-    - test-requirements.txt
+    - requirements.txt
     - tests/
     - .travis.yml
   dependencies:
