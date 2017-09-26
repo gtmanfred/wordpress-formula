@@ -12,7 +12,7 @@ python:
 dist: trusty
 install:
   - bundle install
-  - pip install --user -r test-requirements.txt
+  - pip install -r test-requirements.txt
 script:
   # Setup for tests
   - bundle exec kitchen create -l warn -c 3
