@@ -1,12 +1,6 @@
 language: python
 services:
   - docker
-addons:
-  apt:
-    packages:
-    - curl
-    - git
-    - ruby-bundler
 python:
   - 3.6
 dist: trusty
