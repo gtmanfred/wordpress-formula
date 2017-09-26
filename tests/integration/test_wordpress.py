@@ -2,4 +2,5 @@ import requests
 
 
 def test_server(host_ip, http_port):
-    assert requests.get(f'http://{host_ip}:{http_port}', headers={'Host': 'blog.manfred.io'}).status_code == 200
+    resp = requests.get('http://{0}:{1}'.format(http_ip, http_port), headers={'Host': 'blog.manfred.io'})
+    assert resp.status_code == 200
