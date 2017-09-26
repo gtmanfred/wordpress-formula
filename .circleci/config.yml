@@ -9,8 +9,8 @@ jobs:
       - run:
           name: Disable AppArmor
           command: |
-            service apparmor teardown
-            apt-get remove apparmor
+            sudo service apparmor teardown
+            sudo apt-get remove -y apparmor
       - run:
           name: Install Test Kitchen
           command: |
