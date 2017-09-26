@@ -5,14 +5,14 @@ pipeline:
       - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install
-      - bundle exec kitchen create centos -l warn -c 4
-      - bundle exec kitchen converge centos
+      - bundle exec kitchen create all -l warn -c 3
+      - bundle exec kitchen converge all
   verify:
     image: gtmanfred/kitchen-salt:latest
     environment:
       - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
-      - bundle install --with=docker --without windows vagrant
+      - bundle install
       - python3 -m pip install --user -r test-requirements.txt
       - bundle exec kitchen verify all
   clean:
@@ -24,6 +24,6 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
-      - bundle install --with=docker --without windows vagrant
+      - bundle install
       - bundle exec kitchen list
       - bundle exec kitchen destroy all
