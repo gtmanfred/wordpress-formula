@@ -5,7 +5,7 @@ pipeline:
       - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install
-      - bundle exec kitchen create all -l warn -c 3
+      - bundle exec kitchen create all -l warn -c 4
       - bundle exec kitchen converge all
   verify:
     image: gtmanfred/kitchen-salt:latest
@@ -13,7 +13,7 @@ pipeline:
       - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install
-      - python3 -m pip install -r test-requirements.txt
+      - python3 -m pip install -r requirements.txt
       - bundle exec kitchen verify all
   clean:
     when:

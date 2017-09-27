@@ -6,10 +6,10 @@ python:
 dist: trusty
 install:
   - bundle install
-  - pip install -r test-requirements.txt
+  - pip install -r requirements.txt
 script:
   # Setup for tests
-  - bundle exec kitchen create -l warn -c 3
+  - bundle exec kitchen create -l warn -c 4
   # Provision containers
   - bundle exec kitchen converge
   # Run test-kitchen with docker driver:
