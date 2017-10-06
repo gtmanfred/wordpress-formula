@@ -9,11 +9,11 @@ install:
   - pip install -r requirements.txt
 script:
   # Setup for tests
-  - bundle exec kitchen create -l warn -c 4
+  - bundle exec kitchen create -l warn -c 4 nitrogen
   # Provision containers
-  - bundle exec kitchen converge
+  - bundle exec kitchen converge nitrogen
   # Run test-kitchen with docker driver:
-  - bundle exec kitchen verify
+  - bundle exec kitchen verify nitrogen
 after_script:
-  - bundle exec kitchen list
-  - bundle exec kitchen destroy all
+  - bundle exec kitchen list nitrogen
+  - bundle exec kitchen destroy nitrogen

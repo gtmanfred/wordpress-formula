@@ -5,8 +5,8 @@ pipeline:
       - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install
-      - bundle exec kitchen create all -l warn -c 4
-      - bundle exec kitchen converge all
+      - bundle exec kitchen create nitrogen -l warn -c 4
+      - bundle exec kitchen converge nitrogen
   verify:
     image: gtmanfred/kitchen-salt:latest
     environment:
@@ -14,7 +14,7 @@ pipeline:
     commands:
       - bundle install
       - python3 -m pip install -r requirements.txt
-      - bundle exec kitchen verify all
+      - bundle exec kitchen verify nitrogen
   clean:
     when:
       status:
@@ -25,8 +25,8 @@ pipeline:
       - DOCKER_HOST=tcp://172.18.0.1:2375
     commands:
       - bundle install
-      - bundle exec kitchen list
-      - bundle exec kitchen destroy all
+      - bundle exec kitchen list nitrogen
+      - bundle exec kitchen destroy nitrogen
 when:
   branch:
     include:

@@ -22,17 +22,17 @@ jobs:
       - run:
           name: Setup Containers
           command: |
-            bundle exec kitchen create all -l warn -c 4
-            bundle exec kitchen converge all
+            bundle exec kitchen create nitrogen -l warn -c 4
+            bundle exec kitchen converge nitrogen
       - run:
           name: Verify Environments
           command: |
-            bundle exec kitchen verify all
+            bundle exec kitchen verify nitrogen
       - run:
           name: Cleanup Containers
           command: |
-            bundle exec kitchen list all
-            bundle exec kitchen destroy all
+            bundle exec kitchen list nitrogen
+            bundle exec kitchen destroy nitrogen
 workflows:
   version: 2
   Test:
