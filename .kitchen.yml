@@ -81,7 +81,10 @@ platforms:
       run_command: /lib/systemd/systemd
 
 suites:
-  - name: wordpress
+  - name: nitrogen
+  - name: develop
+    provisioner:
+      salt_bootstrap_options: -X -p git -p curl -p sudo git develop
 
 verifier:
   name: shell
