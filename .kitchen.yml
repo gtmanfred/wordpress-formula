@@ -14,17 +14,17 @@ provisioner:
   is_file_root: true
   require_chef: false
   salt_copy_filter:
-    - .circleci/
+    - .circleci
     - Dockerfile
     - .drone.yml
-    - .git/
+    - .git
     - .gitignore
-    - .kitchen/
+    - .kitchen
     - .kitchen.yml
     - Gemfile
     - Gemfile.lock
     - requirements.txt
-    - tests/
+    - tests
     - .travis.yml
   dependencies:
     - name: apache
