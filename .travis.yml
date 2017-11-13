@@ -8,7 +8,7 @@ install:
   - bundle install
   - pip install -r requirements.txt
 env:
-  - KITCHEN_YAML=.kitchen.local.yml
+  - KITCHEN_YAML=.kitchen.docker.yml
 script:
   # Setup for tests
   - bundle exec kitchen create -l warn -c 4 nitrogen

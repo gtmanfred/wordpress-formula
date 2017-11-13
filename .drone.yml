@@ -3,6 +3,7 @@ pipeline:
     image: gtmanfred/kitchen-salt:latest
     environment:
       - DOCKER_HOST=tcp://172.18.0.1:2375
+      - KITCHEN_YAML=.kitchen.docker.yml
     commands:
       - bundle install
       - bundle exec kitchen create nitrogen -l warn -c 4
@@ -11,6 +12,7 @@ pipeline:
     image: gtmanfred/kitchen-salt:latest
     environment:
       - DOCKER_HOST=tcp://172.18.0.1:2375
+      - KITCHEN_YAML=.kitchen.docker.yml
     commands:
       - bundle install
       - python3 -m pip install -r requirements.txt
@@ -23,6 +25,7 @@ pipeline:
     image: gtmanfred/kitchen-salt:latest
     environment:
       - DOCKER_HOST=tcp://172.18.0.1:2375
+      - KITCHEN_YAML=.kitchen.docker.yml
     commands:
       - bundle install
       - bundle exec kitchen list nitrogen

@@ -45,25 +45,8 @@ provisioner:
       base:
         "*":
           - wordpress
-    wordpress.sls:
-      mysql:
-        database:
-          - wordpress
-        user:
-          wordpress:
-            password: quair9aiqueeShae4toh
-            host: localhost
-            databases:
-              - database: wordpress
-                grants:
-                  - all privileges
-      wordpress:
-        lookup:
-          admin_user: gtmanfred
-          admin_email: daniel@gtmanfred.com
-          title: "GtManfred's Blog"
-          url: http://blog.manfred.io
-
+  pillars-from-files:
+    wordpress.sls: pillar.example
 platforms:
   - name: centos
     driver_config:

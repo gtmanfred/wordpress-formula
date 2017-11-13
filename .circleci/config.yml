@@ -22,15 +22,18 @@ jobs:
       - run:
           name: Setup Containers
           command: |
+            export KITCHEN_YAML=.kitchen.docker.yml
             bundle exec kitchen create nitrogen -l warn -c 4
             bundle exec kitchen converge nitrogen
       - run:
           name: Verify Environments
           command: |
+            export KITCHEN_YAML=.kitchen.docker.yml
             bundle exec kitchen verify nitrogen
       - run:
           name: Cleanup Containers
           command: |
+            export KITCHEN_YAML=.kitchen.docker.yml
             bundle exec kitchen list nitrogen
             bundle exec kitchen destroy nitrogen
 workflows:
