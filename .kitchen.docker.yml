@@ -68,7 +68,7 @@ suites:
       salt_bootstrap_options: -X -p git -p curl -p sudo stable 2017.7
   - name: oxygen
     provisioner:
-      salt_bootstrap_options: -X -p git -p curl -p sudo git oxygen.rc1 &>/dev/null
+      salt_bootstrap_options: -X -p git -p curl -p sudo stable 2018.3 &>/dev/null
   - name: develop
     provisioner:
       salt_bootstrap_options: -X -p git -p curl -p sudo git develop &>/dev/null
