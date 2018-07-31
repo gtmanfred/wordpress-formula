@@ -13,7 +13,6 @@ provisioner:
   is_file_root: true
   require_chef: false
   salt_copy_filter:
-    - .circleci
     - Dockerfile
     - .drone.yml
     - .git
