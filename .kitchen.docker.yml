@@ -64,13 +64,13 @@ platforms:
 suites:
   - name: nitrogen
     provisioner:
-      salt_bootstrap_options: -X -p git -p curl -p sudo stable 2017.7
+      salt_bootstrap_options: -qX -p git -p curl -p sudo git 2017.7
   - name: oxygen
     provisioner:
-      salt_bootstrap_options: -X -p git -p curl -p sudo stable 2018.3 &>/dev/null
+      salt_bootstrap_options: -qX -p git -p curl -p sudo git 2018.3
   - name: develop
     provisioner:
-      salt_bootstrap_options: -X -p git -p curl -p sudo git develop &>/dev/null
+      salt_bootstrap_options: -qX -p git -p curl -p sudo git develop
 
 verifier:
   name: shell
