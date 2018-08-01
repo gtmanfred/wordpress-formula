@@ -10,11 +10,9 @@ provisioner:
   salt_install: bootstrap
   salt_version: latest
   salt_bootstrap_url: https://bootstrap.saltstack.com
-  salt_bootstrap_options: -X -p git -p curl -p sudo
   is_file_root: true
   require_chef: false
   salt_copy_filter:
-    - .circleci
     - Dockerfile
     - .drone.yml
     - .git
@@ -51,11 +49,6 @@ platforms:
   - name: centos
     driver_config:
       run_command: /usr/lib/systemd/systemd
-  - name: opensuse
-    driver_config:
-      run_command: /usr/lib/systemd/systemd
-      provision_command:
-        - systemctl enable sshd.service
   - name: ubuntu
     driver_config:
       run_command: /lib/systemd/systemd
@@ -65,9 +58,14 @@ platforms:
 
 suites:
   - name: nitrogen
+    provisioner:
+      salt_bootstrap_options: -qX -p git -p curl -p sudo git 2017.7
+  - name: oxygen
+    provisioner:
+      salt_bootstrap_options: -qX -p git -p curl -p sudo git 2018.3
   - name: develop
     provisioner:
-      salt_bootstrap_options: -X -p git -p curl -p sudo git develop
+      salt_bootstrap_options: -qX -p git -p curl -p sudo git develop
 
 verifier:
   name: shell

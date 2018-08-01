@@ -8,14 +8,19 @@ install:
   - bundle install
   - pip install -r requirements.txt
 env:
-  - KITCHEN_YAML=.kitchen.docker.yml
+  global:
+    - KITCHEN_YAML=.kitchen.docker.yml
+  matrix:
+    - SUITE=centos
+    - SUITE=ubuntu
+    - SUITE=debian
 script:
   # Setup for tests
-  - bundle exec kitchen create -l warn -c 4 nitrogen
+  - bundle exec kitchen create -l warn -c 3 $SUITE
   # Provision containers
-  - bundle exec kitchen converge nitrogen
+  - bundle exec kitchen converge $SUITE
   # Run test-kitchen with docker driver:
-  - bundle exec kitchen verify nitrogen
+  - bundle exec kitchen verify $SUITE
 after_script:
-  - bundle exec kitchen list nitrogen
-  - bundle exec kitchen destroy nitrogen
+  - bundle exec kitchen list $SUITE
+  - bundle exec kitchen destroy $SUITE
