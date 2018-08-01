@@ -33,7 +33,7 @@ provisioner:
       source: https://github.com/saltstack-formulas/mysql-formula.git
     - name: php
       repo: git
-      source: https://github.com/gtmanfred/php-formula.git
+      source: https://github.com/saltstack-formulas/php-formula.git
   state_top:
     base:
       "*":
