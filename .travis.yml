@@ -12,7 +12,6 @@ env:
     - KITCHEN_YAML=.kitchen.docker.yml
   matrix:
     - SUITE=centos
-    - SUITE=opensuse
     - SUITE=ubuntu
     - SUITE=debian
 script:
