@@ -33,7 +33,7 @@ provisioner:
       source: https://github.com/saltstack-formulas/mysql-formula.git
     - name: php
       repo: git
-      source: https://github.com/saltstack-formulas/php-formula.git
+      source: https://github.com/gtmanfred/php-formula.git
   state_top:
     base:
       "*":
@@ -49,11 +49,6 @@ platforms:
   - name: centos
     driver_config:
       run_command: /usr/lib/systemd/systemd
-  - name: opensuse
-    driver_config:
-      run_command: /usr/lib/systemd/systemd
-      provision_command:
-        - systemctl enable sshd.service
   - name: ubuntu
     driver_config:
       run_command: /lib/systemd/systemd
